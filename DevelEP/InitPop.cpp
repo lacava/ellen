@@ -432,31 +432,42 @@ void push_back_node(vector <node>& line, int choice, params& p,vector<Randclass>
 void push_front_node(vector <node>& line, int choice, params& p,vector<Randclass>& r)
 {
 	string varchoice;
-
+ // cout << "choice: " << choice << "\n";
 	switch (p.op_choice.at(choice))
 	{
 		case 0: //load number
 			if(p.ERC){ // if ephemeral random constants are on
 				if (!p.cvals.empty()){ // if there are constants defined by the user
-					if (r[omp_get_thread_num()].rnd_flt(0,1)<.5)
+					if (r[omp_get_thread_num()].rnd_flt(0,1)<.5){
 						//line.insert(line.begin(),shared_ptr<node>(new n_num(p.cvals.at(r[omp_get_thread_num()].rnd_int(0,p.cvals.size()-1)))));
+						// cout << "at line 443\n";
 						line.insert(line.begin(),node(p.cvals.at(r[omp_get_thread_num()].rnd_int(0,p.cvals.size()-1))));
+					}
 					else{
-						if(p.ERCints)
+						if(p.ERCints){
 							/*line.insert(line.begin(),shared_ptr<node>(new n_num((float)r[omp_get_thread_num()].rnd_int(p.minERC,p.maxERC))));*/
+							// cout << "at line 448\n";
 							line.insert(line.begin(),node((float)r[omp_get_thread_num()].rnd_int(p.minERC,p.maxERC)));
-						else
+						}
+						else{
 							//line.insert(line.begin(),shared_ptr<node>(new n_num(r[omp_get_thread_num()].rnd_flt(p.minERC,p.maxERC))));
+							// cout << "at line 452\n";
 							line.insert(line.begin(),node(r[omp_get_thread_num()].rnd_flt(p.minERC,p.maxERC)));
+						}
 					}
 				}
 				else{
-					if(p.ERCints)
+					if(p.ERCints){
 							//line.insert(line.begin(),shared_ptr<node>(new n_num((float)r[omp_get_thread_num()].rnd_int(p.minERC,p.maxERC))));
+							// cout << "at line 459\n";
 							line.insert(line.begin(),node((float)r[omp_get_thread_num()].rnd_int(p.minERC,p.maxERC)));
-						else
+						}
+						else{
 							//line.insert(line.begin(),shared_ptr<node>(new n_num(r[omp_get_thread_num()].rnd_flt(p.minERC,p.maxERC))));
+							// cout << "at line 463\n";
+							// cout << "p.minERC: " << p.minERC << ", p.maxERC: " << p.maxERC << "\n";
 							line.insert(line.begin(),node(r[omp_get_thread_num()].rnd_flt(p.minERC,p.maxERC)));
+						}
 				}
 			}
 			else if (!p.cvals.empty()) // if ERCs are off, but there are constants defined by the user

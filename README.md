@@ -2,11 +2,14 @@ ellenGP
 =======
 
 ellenGP is a genetic programming tool for symbolic regression and multi-class classification that incorporates epigenetic learning and uses a stack-based, linear representation.
-It is very much under development!
 
-There are some boost library dependencies, including regex. 
+This code formed the basis of research during my [dissertation](http://scholarworks.umass.edu/cgi/viewcontent.cgi?article=1762&context=dissertations_2)
 
-The files have been built in Visual Studio C++ 2010 and in linux with g++ and the intel c++ compiler. 
+Please note that most of the current development for ellen is happening in the [ellyn repo](http://github.com/EpistasisLab/ellyn), which is a Python-wrapped version of this code base. 
+
+There are some library dependencies, including eigen. 
+
+The files have been built in Visual Studio C++ 2010 and in linux with gcc and the intel c++ compiler. 
 
 About
 =====
@@ -18,9 +21,9 @@ How to Build
 ============
 I've built the project in Visual Studio 2010 professional as well as C++ Express (which is free from Microsoft), and in linux with g++ and the intel c++ compiler using the make files. If you use VS 2010 Express, the OpenMP files (which were removed from VS 2010) need to be added to the VS path. 
 
-There are a couple of external library dependencies: 
+There are two external library dependencies: 
 
-- [boost libraries](http://www.boost.org) - a set of multi-purpose c++ libraries
+- [boost libraries](http://www.boost.org) - a set of multi-purpose c++ libraries, *needed for RunTrialsMPI only*
 - [eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) - a c++ template library for linear algebra
 
 In addition to downloading those packages, the paths to them need to be modified in the Makefiles for ellenGP and RunTrials. 
